@@ -1,0 +1,11 @@
+*~
+tmp
+src/IDF/conf/idf.php
+src/IDF/conf/idf.test.php
+www/test.php
+www/media/upload
+src/IDF/gettexttemplates
+indefero-*.zip
+src/IDF/conf/path.php
+.tx/config
+src/IDF/locale/idf.pot.bak

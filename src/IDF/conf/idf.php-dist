@@ -1,0 +1,300 @@
+<?php
+/* -*- tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+/*
+# ***** BEGIN LICENSE BLOCK *****
+# This file is part of InDefero, an open source project management application.
+# Copyright (C) 2008 Céondo Ltd and contributors.
+#
+# InDefero is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# InDefero is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+#
+# ***** END LICENSE BLOCK ***** */
+
+$cfg = array();
+
+#
+# You must set them to false once everything is running ok.
+#
+$cfg['debug'] = true;
+# It will help you catch errors at beginning when configuring your
+# SCM backend. It must be turned off in production.
+$cfg['debug_scm'] = false;
+
+#
+# Note: By default, InDefero will not manage the repositories for
+# you, you can enable the repositories management with the
+# built-in plugins. The documentation of the plugins is available
+# in the `doc/` folder.
+#
+
+# If you have a single git repository, just put the full path to it
+# without trailing slash. The path is the path to the git database,
+# so you need to include the /.git folder.
+# For example: '/path/to/my/project/.git'
+#
+# If you have multiple repositories, you need to put %s where you
+# want the shortname of the project to be replaced.
+# For example:
+# - You have many projects on your local computer and want to use
+#   InDefero to see them. Put: '/home/yourlogin/Projects/%s/.git'
+# - You have many projects on a remote server with only "bare" git
+#   repositories. Put: '/home/git/repositories/%s.git'
+#
+# ** Do not forget to give read access to these folders to your www
+# ** user. For example, adding www to the git group.
+$cfg['git_repositories'] = '/home/git/repositories/%s.git';
+#
+# Like for the git_repositories definition, the path can contains %s
+# and it will be automatically replaced. You can ignore this
+# configuration variable as it is only for information use in the
+# tree view.
+#
+$cfg['git_remote_url'] = 'git://localhost/%s.git';
+$cfg['git_write_remote_url'] = 'git@localhost:%s.git';
+
+# Same as for git, you can have multiple repositories, one for each
+# project or a single one for all the projects.
+#
+# In the case of subversion, the admin of a project can also select a
+# remote repository from the web interface. From the web interface
+# you can define a local repository, local repositories are defined
+# here. This if for security reasons.
+$cfg['svn_repositories'] = 'file:///home/svn/repositories/%s';
+$cfg['svn_remote_url'] = 'http://localhost/svn/%s';
+
+#
+# You can setup monotone for use with indefero in several ways.
+# Please look into doc/syncmonotone.mdtext for more information.
+#
+
+# Path to the monotone binary
+$cfg['mtn_path'] = 'mtn';
+
+# Additional options for the started monotone process
+$cfg['mtn_opts'] = array('--no-workspace', '--no-standard-rcfiles');
+
+# The path to a specific database (local use) or a writable project
+# directory (remote / usher use). %s is replaced with the project name
+$cfg['mtn_repositories'] = '/home/mtn/repositories/%s.mtn';
+
+# The URL which is displayed as sync URL to the user and which is also
+# used to connect to a remote usher
+$cfg['mtn_remote_url'] = 'mtn://my-host.biz/%s';
+
+# Whether the particular database(s) are accessed locally (via automate stdio)
+# or remotely (via automate remote_stdio). 'remote' is the default for
+# use with usher and the SyncMonotone plugin, while 'local' access should be
+# choosed for manual setups and / or ssh access.
+$cfg['mtn_db_access'] = 'local';
+
+# Full path to the directory tree which contains default configuration files
+# that are automatically created for new projects. This is only needed
+# if $cfg['mtn_db_access'] is set to remote, i.e. in case the SyncMonotone
+# plugin should be used. If unset, it defaults to the tree underknees
+# src/IDF/Plugin/SyncMonotone/. Don't forget the trailing slash!
+#$cfg['mtn_confdir'] = '/path/to/dir/tree/';
+
+# Additional configuration files you want to create / copy for new setups.
+# All these file paths have to be relative to $cfg['mtn_confdir'].
+#$cfg['mtn_confdir_extra'] = array('hooks.d/something.lua')
+
+# Needs to be configured for remote / usher usage.
+# This allows basic control of a running usher process via the forge
+# administration. The variable must point to the full (writable)
+# path of the usher configuration file which gets updated when new projects
+# are added
+#$cfg['mtn_usher_conf'] = '/path/to/usher.conf';
+
+# Mercurial repositories path
+$cfg['mercurial_repositories'] = '/home/mercurial/repositories/%s';
+#$cfg['mercurial_remote_url'] = 'http://projects.ceondo.com/hg/%s';
+
+# admins will get an email in case of errors in the system in non
+# debug mode.
+$cfg['admins'] = array(
+                       array('Admin', 'you@example.com'),
+                       );
+
+# Email configuration
+$cfg['send_emails'] = true;
+$cfg['mail_backend'] = 'smtp';
+$cfg['mail_host'] = 'localhost';
+$cfg['mail_port'] = 25;
+
+# Paths/Url configuration.
+#
+# Examples:
+# You have:
+#   http://www.mydomain.com/myfolder/index.php
+# Put:
+#   $cfg['idf_base'] = '/myfolder/index.php';
+#   $cfg['url_base'] = 'http://www.mydomain.com';
+#
+# You have mod_rewrite:
+#   http://www.mydomain.com/
+# Put:
+#   $cfg['idf_base'] = '';
+#   $cfg['url_base'] = 'http://www.mydomain.com';
+#
+#
+#
+$cfg['idf_base'] = '/index.php';
+$cfg['url_base'] = 'http://localhost';
+
+# Url to access the media folder which is in the www folder
+# of the archive
+$cfg['url_media'] = 'http://localhost/media';
+
+# Url to access a folder in which the files you upload through
+# the downloads tab will be stored.
+$cfg['url_upload'] = 'http://localhost/media/upload';
+# Path to the upload folder
+$cfg['upload_path'] = '/home/www/indefero/www/media/upload';
+
+#
+# The following path *MUST NOT* be accessible through a web browser
+# as user will be able to upload .html, .php files and this can
+# create *TERRIBLE* security issues. In this folder, the attachments
+# to the issues will be uploaded and we do not restrict the content type.
+#
+$cfg['upload_issue_path'] = '/home/www/indefero/attachments';
+
+#
+# write here a long random string unique for this installation. This
+# is critical to put a long string, with at least 40 characters.
+$cfg['secret_key'] = '';
+
+# the sender of all the emails.
+$cfg['from_email'] = 'sender@example.com';
+
+# Email address for the bounced messages.
+$cfg['bounce_email'] = 'no-reply@example.com';
+
+# Temporary folder where the script is writing the compiled templates,
+# cached data and other temporary resources.
+# It must be writeable by your webserver instance.
+# It is mandatory if you are using the template system.
+$cfg['tmp_folder'] = '/tmp';
+
+# Database configuration
+$cfg['db_login'] = 'www';
+$cfg['db_password'] = '';
+$cfg['db_server'] = '';
+$cfg['db_version'] = '5.1'; # Only needed for MySQL
+# If you want to have different installations with the same DB
+$cfg['db_table_prefix'] = 'indefero_';
+# ** DO NOT USE SQLITE IN PRODUCTION **
+# This is not because of problems with the quality of the SQLite
+# driver or with SQLite itself, this is due to the lack of migration
+# support in Pluf for SQLite, this means we cannot modify the DB
+# easily once it is loaded with data.
+$cfg['db_engine'] = 'PostgreSQL'; # SQLite is also well tested or MySQL
+$cfg['db_database'] = 'website'; # put absolute path to the db if you
+                                 # are using SQLite.
+#
+# The extension of the downloads are limited. You can add extra
+# extensions here.
+# $cfg['idf_extra_upload_ext'] = 'ext1 ext2';
+#
+# By default, the size of the downloads is limited to 2MB.
+# The php.ini upload_max_filesize configuration setting will
+# always have precedence.
+# $cfg['max_upload_size'] = 2097152; // Size in bytes
+
+#
+# Time zone
+# http://www.php.net/manual/en/timezones.php
+#
+# $cfg['time_zone'] = 'Europe/Berlin';
+
+
+$cfg['pear_path'] = '/usr/share/php';
+
+$cfg['login_success_url'] = $cfg['url_base'].$cfg['idf_base'];
+$cfg['after_logout_page'] = $cfg['url_base'].$cfg['idf_base'];
+
+# Caching of the scm commands.
+$cfg['cache_engine'] = 'Pluf_Cache_File';
+$cfg['cache_timeout'] = 300;
+$cfg['cache_file_folder'] = $cfg['tmp_folder'].'/cache';
+
+# The folder in which the templates of the application are located.
+$cfg['template_folders'] = array(
+                                 dirname(__FILE__).'/../templates',
+                                 );
+
+$cfg['installed_apps'] = array('Pluf', 'IDF');
+$cfg['pluf_use_rowpermission'] = true;
+$cfg['middleware_classes'] = array(
+         'Pluf_Middleware_Csrf',
+         'Pluf_Middleware_Session',
+         'IDF_Middleware',
+         'Pluf_Middleware_Translation',
+         );
+$cfg['template_context_processors'] = array('IDF_Middleware_ContextPreProcessor');
+$cfg['idf_views'] = dirname(__FILE__).'/urls.php';
+
+# available languages
+$cfg['languages'] = array('en', 'fr');
+
+# SCM base configuration
+$cfg['allowed_scm'] = array('git' => 'IDF_Scm_Git',
+                            'svn' => 'IDF_Scm_Svn',
+                            'mercurial' => 'IDF_Scm_Mercurial',
+                            'mtn' => 'IDF_Scm_Monotone',
+                            );
+
+# Specific git config
+# The core.quotepath is configured on new repository
+# True -> All characters upper than 0x80 will be escape (default)
+# False -> Characters is print directly, enable accented character in a UTF-8 shell
+# $cfg['git_core_quotepath'] = false;
+
+# Set to true when uploaded public keys should not only be validated
+# syntactically, but also by the specific backend. For SSH public
+# keys, ssh-keygen(3) must be available and usable in PATH, for
+# monotone public keys, the monotone binary (as configured above)
+# is used.
+# $cfg['idf_strong_key_check'] = false;
+
+# If you want to use another memtypes database
+# $cfg['idf_mimetypes_db'] = '/etc/mime.types';
+
+# Extra text files when displaying source
+# $cfg['idf_extra_text_ext'] = 'ext1 ext2 ext3';
+
+# If you can execute the shell commands executed to get info
+# from the scm  with the user of your PHP process but it is
+# not working from within PHP, this can be due to the environment
+# variables not being set correctly. Note the trailing space.
+# $cfg['idf_exec_cmd_prefix'] = '/usr/bin/env -i ';
+
+# Path to the SCM binaries. These binaries are not necessarily in
+# the path of your webserver or fastcgi process. In that case you
+# may need to set the path manually here. This is the case with OSX.
+# To know which path you need to provide, just run:
+# $ which git
+# from the command line. This will give you the path to git.
+# $cfg['svn_path'] = 'svn';
+# $cfg['svnlook_path'] = 'svnlook';
+# $cfg['svnadmin_path'] = 'svnadmin';
+# $cfg['hg_path'] = 'hg';
+# $cfg['git_path'] = 'git';
+
+# If you do not want to have calculations of the repositories, attachments
+# and downloads size, set it to true. You can set to false some
+# times to times to check the size.
+# $cfg['idf_no_size_check'] = false;
+
+return $cfg;

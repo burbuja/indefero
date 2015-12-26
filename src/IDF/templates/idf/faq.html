@@ -1,0 +1,63 @@
+{extends "idf/base-simple.html"}
+{block docclass}yui-t3{/block}
+{block body}
+<ul>
+<li><a href="#q-keyboard">{trans 'What are the keyboard shortcuts?'}</a></li>
+<li><a href="#q-duplicate">{trans 'How to mark an issue as duplicate?'}</a></li>
+<li><a href="#q-mugshot">{trans 'How can I display my head next to my comments?'}</a></li>
+<li><a href="#q-api">{trans 'What is the API and how to use it?'}</a></li>
+</ul>
+
+<h2 id="q-keyboard">{trans 'What are the keyboard shortcuts?'}</h2>
+
+<ul>
+<li>{trans '<kbd>Shift+h</kbd>: This help page.'}</li>
+</ul>
+
+<p>{trans 'If you are in a project, you have the following shortcuts:'}</p>
+
+<ul>
+<li>{trans '<kbd>Shift+u</kbd>: Project updates.'}</li>
+<li>{trans '<kbd>Shift+d</kbd>: Downloads.'}</li>
+<li>{trans '<kbd>Shift+o</kbd>: Documentation.'}</li>
+<li>{trans '<kbd>Shift+a</kbd>: Create a new issue.'}</li>
+<li>{trans '<kbd>Shift+i</kbd>: List of open issues.'}</li>
+<li>{trans '<kbd>Shift+m</kbd>: The issues you submitted.'}</li>
+<li>{trans '<kbd>Shift+w</kbd>: The issues assigned to you.'}</li>
+<li>{trans '<kbd>Shift+s</kbd>: Source.'}</li>
+</ul>
+
+<p>{trans 'You also have the standard access keys:'}</p>
+
+<ul>
+<li>{trans '<kbd>Alt+1</kbd>: Home.'}</li>
+<li>{trans '<kbd>Alt+2</kbd>: Skip the menus.'}</li>
+<li>{trans '<kbd>Alt+4</kbd>: Search (when available).'}</li>
+</ul>
+
+<h2 id="q-duplicate">{trans 'How to mark an issue as duplicate?'}</h2>
+
+{blocktrans}<p>This is simple:</p>
+<ol>
+<li>Write in the comments "This is a duplicate of issue 123", change 123 with the corresponding issue number.</li>
+<li>Change the status of the current issue to <em>Duplicate</em>.</li>
+<li>Submit the changes.</li>
+</ol>{/blocktrans}
+
+<h2 id="q-mugshot">{trans 'How can I display my head next to my comments?'}</h2>
+
+<p>{blocktrans}You need to create an account on <a href="http://en.gravatar.com/">Gravatar</a>, this takes about 5 minutes and is free.{/blocktrans}</p>
+
+<h2 id="q-api">{trans 'What is the API and how to use it?'}</h2>
+
+<p>{blocktrans}The API (Application Programming Interface) is used to interact with InDefero with another program. For example, this can be used to create a desktop program to submit new tickets easily.{/blocktrans}</p>{aurl 'url', 'IDF_Views::faqApi'}
+<p>{blocktrans}<a href="{$url}">Learn more about the API</a>.{/blocktrans}</p>
+ 
+{/block}
+{block context}
+<p>{trans 'Here we are, just to help you.'}</p>
+<h2>{trans 'Projects'}</h2>
+<ul>{foreach $projects as $p}
+<li><a href="{url 'IDF_Views_Project::home', array($p.shortname)}">{$p}</a></li>
+{/foreach}</ul>
+{/block}

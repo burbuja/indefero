@@ -1,0 +1,120 @@
+{extends "idf/admin/base.html"}
+{block docclass}yui-t3{assign $inTabs = true}{/block}
+{block body}
+{if $form.errors}
+<div class="px-message-error">
+<p>{trans 'The form contains some errors. Please correct them to update the access rights.'}</p>
+{if $form.get_top_errors}
+{$form.render_top_errors|unsafe}
+{/if}
+</div>
+{/if}
+<form method="post" action=".">
+<table class="form" summary="">
+<tr>
+<th>&nbsp;</th>
+<th class="a-c"><strong>{trans 'Access Rights'}</strong></th>
+<th class="a-c"><strong>{trans 'Notification Email'}</strong></th>
+</tr>
+<tr>
+<th><strong>{$form.f.downloads_access_rights.labelTag}:</strong></th>
+<td>{if $form.f.downloads_access_rights.errors}{$form.f.downloads_access_rights.fieldErrors}{/if}
+{$form.f.downloads_access_rights|unsafe}
+</td>
+<td>{if $form.f.downloads_notification_email.errors}{$form.f.downloads_notification_email.fieldErrors}{/if}
+{$form.f.downloads_notification_email|unsafe}
+</td>
+</tr>
+<tr>
+<th><strong>{$form.f.wiki_access_rights.labelTag}:</strong></th>
+<td>{if $form.f.wiki_access_rights.errors}{$form.f.wiki_access_rights.fieldErrors}{/if}
+{$form.f.wiki_access_rights|unsafe}
+</td>
+<td>{if $form.f.wiki_notification_email.errors}{$form.f.wiki_notification_email.fieldErrors}{/if}
+{$form.f.wiki_notification_email|unsafe}
+</td>
+</tr>
+<tr>
+<th><strong>{$form.f.issues_access_rights.labelTag}:</strong></th>
+<td>{if $form.f.issues_access_rights.errors}{$form.f.issues_access_rights.fieldErrors}{/if}
+{$form.f.issues_access_rights|unsafe}
+</td>
+<td>{if $form.f.issues_notification_email.errors}{$form.f.issues_notification_email.fieldErrors}{/if}
+{$form.f.issues_notification_email|unsafe}
+</td>
+</tr>
+<tr>
+<th><strong>{$form.f.source_access_rights.labelTag}:</strong></th>
+<td>{if $form.f.source_access_rights.errors}{$form.f.source_access_rights.fieldErrors}{/if}
+{$form.f.source_access_rights|unsafe}
+</td>
+<td>{if $form.f.source_notification_email.errors}{$form.f.source_notification_email.fieldErrors}{/if}
+{$form.f.source_notification_email|unsafe}
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td colspan="2" class="helptext">
+{blocktrans}
+Only project members and admins have write access to the source.<br />
+If you restrict the access to the source, anonymous access is<br />
+not provided and the users must authenticate themselves with their<br />
+password or SSH key.{/blocktrans}
+</td></tr>
+<tr>
+<th><strong>{$form.f.review_access_rights.labelTag}:</strong></th>
+<td>{if $form.f.review_access_rights.errors}{$form.f.review_access_rights.fieldErrors}{/if}
+{$form.f.review_access_rights|unsafe}
+</td>
+<td>{if $form.f.review_notification_email.errors}{$form.f.review_notification_email.fieldErrors}{/if}
+{$form.f.review_notification_email|unsafe}
+</td>
+</tr>
+<tr>
+<th>{if $form.f.private_project.errors}{$form.f.private_project.fieldErrors}{/if}
+{$form.f.private_project|unsafe}
+</th>
+<td>{$form.f.private_project.labelTag}</td>
+</tr>
+<tr id="authorized-users-row">
+<td>&nbsp;</td>
+<td colspan="2">{$form.f.authorized_users.labelTag}:<br />
+{if $form.f.authorized_users.errors}{$form.f.authorized_users.fieldErrors}{/if}
+{$form.f.authorized_users|unsafe}
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td colspan="2">
+<input type="submit" value="{trans 'Save Changes'}" name="submit" />
+</td>
+</tr>
+</table>
+</form>
+{/block}
+{block context}
+<div class="issue-submit-info">
+<p><strong>{trans 'Instructions:'}</strong></p>
+<p>{blocktrans}You can configure here the project tabs access rights and notification emails.{/blocktrans}</p>
+<p>{blocktrans}Notification emails will be sent from the <strong>{$from_email}</strong> address, if you send the email to a mailing list, you may need to register this email address. Multiple email addresses must be separated through commas (','). If you do not want to send emails for a given type of changes, simply leave the corresponding field empty.{/blocktrans}</p>
+<p>{blocktrans}If you mark a project as private, only the project members and administrators, together with the extra authorized users you provide will have access to the project. You will still be able to define further access rights for the different tabs but the "Open to all" and "Signed in users" will default to authorized users only.{/blocktrans}</p>
+<p>{blocktrans}Specify each person by its login. Each person must have already registered with the given login. Separate the logins with commas and/or new lines.{/blocktrans}</p>
+</div>
+{/block}
+
+{block javascript}{literal}
+<script type="text/javascript">
+$(document).ready(function(){
+    // If not checked, hide
+    if (!$("#id_private_project").is(":checked"))
+        $("#authorized-users-row").hide();
+        $("#id_private_project").click(function(){
+            if ($("#id_private_project").is(":checked")) {
+                $("#authorized-users-row").show();
+            } else {
+                $("#authorized-users-row").hide();
+            }
+        });
+    });
+</script>
+{/literal}{/block}

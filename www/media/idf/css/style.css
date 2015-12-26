@@ -1,0 +1,996 @@
+/*
+# ***** BEGIN LICENSE BLOCK *****
+# This file is part of InDefero, an open source project management application.
+# Copyright (C) 2008 Céondo Ltd and contributors.
+#
+# InDefero is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# InDefero is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+#
+# ***** END LICENSE BLOCK ***** */
+
+body {
+  font-family: arial, helvetica, sans-serif;
+}
+
+.top {
+  margin-top: 5px;
+}
+
+a:link {
+  color: #00e;
+}
+
+a:visited {
+  color: #551a8b;
+}
+
+a:active{
+  color: #f00;
+}
+
+.yui-g {
+  padding: 0 1em;
+}
+
+.right {
+  text-align: right;
+}
+
+.a-c {
+  text-align: center !important;
+}
+
+.dellink {
+  float: right;
+  position: relative;
+}
+
+.dellink a {
+  color: #a00;
+}
+
+a.userw {
+  color: #000;
+}
+
+.mono {
+  font-family: monospace;
+}
+
+.soft {
+  color: #777;
+}
+
+.soft a {
+  color: #777;
+}
+
+a.soft {
+  color: #777;
+}
+
+a.soft:visited {
+  color: #777;
+}
+
+div.context {
+  padding-left: 1em;
+}
+
+/**
+ * Form
+ */
+form.star {
+  display: inline;
+}
+
+table.form th, table.form td {
+  border: none;
+  vertical-align: top;
+}
+table.form th {
+  text-align: right;
+  font-weight: normal;
+}
+
+table.form td.separator {
+  font-weight: bold;
+  text-align: center;
+}
+
+.px-message-error {
+  padding-left: 37px;
+  background: url("../img/dialog-error.png");
+  background-repeat: no-repeat;
+  background-position: 3px 0;
+  color: #c00;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+
+ul.errorlist {
+  color: #c00;
+  font-weight: bold;
+}
+
+div.user-messages {
+  border: 1px solid rgb(229, 225, 169);
+  background-color: #fffde3;
+  margin-bottom: 1em;
+  margin-left: -1px;
+  width: 90%;
+}
+
+div.theterms {
+  border: 1px solid rgb(229, 225, 169);
+  background-color: #fffde3;
+  padding: 1em 1em 0 1em;
+}
+
+
+/**
+ * Recent issues
+ */
+table.recent-issues {
+  width: 90%;
+}
+
+table.minsize {
+  width: auto !important;
+}
+
+table.recent-issues tr.log {
+  border-bottom: 1px solid #e7ebe3;
+}
+
+table.recent-issues th {
+  background-color: #e4e8E0;
+  vertical-align: top;
+  border-color: #d3d7cf;
+}
+
+table.recent-issues tr {
+  border-left: 1px solid #d3d7cf;
+  border-right: 1px solid #d3d7cf;
+  border-bottom: 1px solid #d3d7cf;
+}
+
+table.recent-issues td {
+  border: none;
+  vertical-align: top;
+}
+
+table.recent-issues tfoot th {
+  text-align: right;
+}
+
+table.recent-issues tfoot th a {
+  color: #000;
+  font-weight: normal;
+}
+
+table.recent-issues th a.px-current-page {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+span.px-sort {
+  font-weight: normal;
+  font-size: 70%;
+  white-space: nowrap;
+  padding-left: 1em;
+}
+
+span.px-header-title {
+  white-space: nowrap;
+}
+
+span.px-header-title a, span.px-header-title a:link, span.px-header-title a:visited, span.px-header-title a:active {
+  color: #000;
+}
+
+/**
+ * Issue
+ */
+a.issue-c {
+  text-decoration: line-through;
+}
+
+pre.issue-comment-text {
+  font-family: monospace;
+  line-height: 1.2; /* to be nice also with links */
+}
+
+div.issue-comment {
+  border-left: 3px solid #8ae234;
+  border-bottom: 1px solid #d3d7cf;
+  border-right: 1px solid #d3d7cf;
+  padding: 0.5em;
+}
+
+.issue-comment-focus {
+  border-right: 3px solid #8ae234 !important;
+}
+
+div.issue-comment-first {
+  border-top: 1px solid #d3d7cf;
+  clear: both;
+}
+
+div.issue-comment-signin {
+  -moz-border-radius: 0 0 3px 3px;
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 0;
+  -webkit-border-top-right-radius: 0;
+  background-color: #d3d7cf;
+  padding: 4px;
+}
+
+div.issue-comment-signin a {
+  color: #000;
+}
+
+div.issue-changes {
+  background-color: #d3d7cf;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  padding: 4px;
+  width: 60%;
+}
+
+div.issue-changes-timeline {
+  background-color: #eeeeec;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  margin-top: 4px;
+  padding: 4px;
+  width: 60%;
+  color: #888a85;
+}
+
+div.issue-submit-info {
+  background-color: #d3d7cf;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  padding: 0.5em;
+  margin-bottom: 1em;
+}
+
+div.issue-submit-info h2 {
+  margin-top: 0;
+}
+
+span.label {
+  color: #204a87;
+  padding-left: 0.5em;
+}
+
+a.label {
+  color: #204a87;
+  text-decoration: none;
+}
+
+.label {
+  color: #204a87;
+}
+
+.nobrk {
+ white-space: nowrap;
+}
+
+hr { visibility: hidden; }
+
+hr.attach {
+  visibility: visible;
+  border: 0;
+  background-color: #d3d7cf;
+  color: #d3d7cf;
+  width: 40%;
+}
+
+textarea {
+  font-family: monospace;
+}
+
+h1.title {
+  font-weight: normal;
+}
+
+h1.project-title {
+  font-weight: normal;
+  float: right;
+  z-index: 100;
+  text-align: right;
+  padding-right: 5px;
+  margin-bottom: 0;
+}
+
+.note {
+  font-size: 80%;
+}
+
+.smaller {
+  font-size: 90%;
+}
+
+span.active {
+  font-weight: bold;
+}
+
+.helptext {
+  font-size: 80%;
+  color: #555753;
+}
+
+div.container {
+  clear: both;
+}
+
+.sep {
+  margin: 0 0.3em;
+}
+
+/**
+ * Tabs
+ */
+#main-tabs {
+  line-height: normal;
+}
+
+#main-tabs a {
+  background-color: #d3d7cf;
+  -moz-border-radius: 3px 3px 0 0;
+  -webkit-border-radius: 3px;
+  -webkit-border-bottom-left-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  padding: 4px 4px 0 4px;
+  text-decoration: none;
+  color: #2e3436;
+  font-weight: 600;
+}
+
+#main-tabs a.active {
+  background-color: #a5e26a;
+}
+
+#sub-tabs {
+  background-color: #a5e26a;
+  -moz-border-radius: 0 3px 3px 3px;
+  -webkit-border-radius: 3px;
+  -webkit-border-top-left-radius: 0;
+  padding: 4px;
+}
+
+#sub-tabs a {
+  color: #2e3436;
+}
+
+#sub-tabs a.active {
+  text-decoration: none;
+}
+/**
+ * Tree list
+ */
+table.tree-list {
+  width: 100%;
+}
+
+table.tree-list th {
+  background-color: #e4e8E0;
+  vertical-align: top;
+  border-color: #d3d7cf;
+}
+
+table.tree-list tr {
+  border-left: 1px solid #d3d7cf;
+  border-right: 1px solid #d3d7cf;
+  border-bottom: 1px solid #d3d7cf;
+}
+
+table.tree-list td {
+  border: none;
+  vertical-align: top;
+}
+
+table.tree-list tfoot th, table.code tfoot th {
+  text-align: right;
+  font-weight: normal;
+}
+
+table.tree-list tfoot th a, table.code tfoot th a {
+  color: #000;
+  font-weight: normal;
+}
+
+table.tree-list tfoot th ul, table.code tfoot th ul {
+  text-align: left;
+  font-size: 85%;
+}
+
+table.tree-list tr.log {
+  border-bottom: 1px solid #e7ebe3;
+  /* background-color: #eef2ea !important; */
+}
+
+table.tree-list tr.extra {
+/*  border-bottom: 1px solid #e7ebe3;  */
+/*  background-color: #eef2ea !important; */
+}
+
+table td.fileicon {
+  width: 20px;
+
+}
+
+/**
+ * Autocomplete.
+ */
+.ac_results {
+  padding: 0px;
+  border: 1px solid black;
+  background-color: white;
+  overflow: hidden;
+  z-index: 99999;
+  text-align: left;
+}
+
+.ac_results ul {
+  width: 100%;
+  list-style-position: outside;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ac_results li {
+  margin: 0px;
+  padding: 2px 5px;
+  cursor: default;
+  display: block;
+  /*
+     if width will be 100% horizontal scrollbar will apear
+     when scroll mode will be used
+     */
+  /*width: 100%;*/
+  font: menu;
+  font-size: 12px;
+  /*
+     it is very important, if line-height not setted or setted
+     in relative units scroll will be broken in firefox
+     */
+  line-height: 16px;
+  overflow: hidden;
+}
+
+.ac_loading {
+  background: white url('../img/indicator.gif') right center no-repeat;
+}
+
+.ac_odd {
+  background-color: #eee;
+}
+
+.ac_over {
+  background-color: #4e9a06;
+  color: white;
+}
+
+table.disp th, table.disp td {
+  border: none;
+  vertical-align: top;
+}
+
+/**
+ * Commit
+ */
+table.commit th, table.commit td {
+  border: none;
+  vertical-align: top;
+}
+table.commit th {
+  text-align: right;
+  font-weight: normal;
+}
+table.commit td, table.commit th {
+  padding: 3px;
+}
+table.commit table.changes td {
+  padding: 2px;
+}
+table.commit table.changes table.properties {
+  margin: 0;
+}
+table.commit table.changes table.properties tr:nth-child(even) {
+  background: #E4E8E0;
+}
+table.commit table.changes table.properties td {
+  white-space: pre-wrap;
+}
+table.commit table.changes table.properties td.removed {
+  font-style: italic;
+}
+
+/**
+ * syntax highlighting of diffs
+ */
+table.diff {
+  border-bottom: 1px solid #d3d7cf;
+  width: 100%;
+}
+
+table.diff th {
+  background-color: #e4e8E0;
+  vertical-align: top;
+  border-color: #d3d7cf;
+}
+
+
+table.diff tr {
+  border-left: 1px solid #d3d7cf;
+  border-right: 1px solid #d3d7cf;
+  border-bottom: none;
+  border-top: none;
+}
+
+table.diff td {
+  font-size: 90%;
+  vertical-align: top;
+  padding: 1px;
+  border-color: inherit;
+}
+
+table.diff td.diff-lc {
+  text-align: right;
+  padding: 1px 5px;
+  border-color: inherit;
+  border-top: 1px solid #d3d7cf;
+  border-bottom: 1px solid #d3d7cf;
+  width: 3em;
+}
+
+td.diff-a {
+  background-color: #dfd;
+}
+
+td.diff-r {
+  background-color: #fdd;
+}
+
+td.diff-a, td.diff-r, td.diff-c  {
+  border-bottom: none;
+  border-top: none;
+}
+
+table.diff tr.diff-next {
+  background-color: #e4e8E0;
+  vertical-align: top;
+  text-align: right;
+  border-color: #d3d7cf;
+}
+
+table.diff tr.diff-next td {
+  padding: 1px 5px;
+}
+
+
+/**
+ * view file content
+ */
+table.code {
+  border-bottom: 1px solid #d3d7cf;
+  border-top: 1px solid #d3d7cf;
+  width: 100%;
+}
+
+table.code th {
+  background-color: #e4e8E0;
+  vertical-align: top;
+  border-color: #d3d7cf;
+}
+
+table.code tr {
+  border-left: 1px solid #d3d7cf;
+  border-right: 1px solid #d3d7cf;
+  border-bottom: none;
+  border-top: none;
+}
+
+table.code td {
+  font-size: 90%;
+  vertical-align: top;
+  padding: 1px;
+  border-color: inherit;
+}
+
+table.code td.code {
+  border: none;
+  /* Whitespace hacking from: http://ln.hixie.ch/ */
+  white-space: pre; /* CSS2 */
+  white-space: -moz-pre-wrap; /* Mozilla */
+  white-space: -hp-pre-wrap; /* HP printers */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: pre-wrap; /* CSS 2.1 */
+  word-wrap: break-word; /* IE */
+  padding-left: 5px;
+}
+
+table.code td.code-lc {
+  text-align: right;
+  padding: 1px 5px;
+  border-color: inherit;
+  border-top: 1px solid #d3d7cf;
+  border-bottom: 1px solid #d3d7cf;
+  width: 3em;
+}
+
+table.code td.code-lc a {
+  color: #555753;
+  text-decoration: none;
+}
+
+/**
+ * Download
+ */
+div.download-file {
+  padding: 1em 1em 1em 3em;
+  background: url("../img/down-large.png");
+  background-repeat: no-repeat;
+  background-position: 1em 1em;
+  font-size: 140%;
+  margin-bottom: 1.5em;
+  background-color: #bbe394;
+  width: 40%;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+table.download {
+  margin-top: 1.5em;
+}
+
+/**
+ * Wiki
+ */
+p.desc {
+  background-color: #eeeeec;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  padding: 4px;
+  width: 60%;
+}
+
+div.old-rev {
+  padding: 1em 1em 0.1em 1em;
+  margin-bottom: 1em;
+  background-color: #bbe394;
+  width: 40%;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+div.deprecated-page {
+  padding: 1em 1em 0.1em 3em;
+  margin-bottom: 1em;
+  background: url("../img/warning-large.png");
+  background-repeat: no-repeat;
+  background-position: 1em 1em;
+  font-size: 120%;
+  background-color: #bbe394;
+  width: 40%;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+
+.delp {
+  float: right;
+  position: relative;
+}
+
+.delp a {
+  color: #a00;
+}
+
+ul > li {
+  list-style: disc outside none;
+}
+
+ol > li {
+  list-style: decimal outside none;
+}
+
+#branding {
+  float: right;
+  position: relative;
+  margin-right: -10px;
+  margin-bottom: 10px;
+  width: 115px;
+  font-size: 8px;
+  text-align: right;
+  padding-right: 20px;
+  padding-left: 0px;
+  background-color: #eeeeec;
+  -moz-border-radius: 3px 0 0 3px;
+  -webkit-border-radius: 3px;
+  -webkit-border-top-right-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  color: #888a85;
+  clear: both;
+  background-image: url("../img/ceondo.png");
+  background-repeat: no-repeat;
+  background-position: top right;
+}
+
+#branding a {
+  color: #777;
+}
+
+#branding a:visited {
+  color: #777;
+}
+
+#ft {
+  padding: 0px;
+  margin: 0px;
+}
+
+#wiki-toc {
+    float: right;
+    margin-left: 10px;
+}
+
+#wiki-toc-content {
+    border:  1px solid #999999;
+    border-width: 1px 0;
+    padding: 10px 0;
+    padding-bottom: 25px;
+    background-color: #ffffff;
+    display: block;
+}
+
+#wiki-toc-content a {
+    display: block;
+}
+
+#wiki-toc-content a.wiki-h2 {
+    margin-left: 1em;
+}
+
+#wiki-toc-content a.wiki-h3 {
+    margin-left: 2em;
+}
+
+/**
+ * main menu
+ */
+#main-menu {
+  padding: 0;
+  margin: 5px 0 13px;
+}
+
+#main-menu > li {
+  list-style-type: none;
+  margin-left: 5px;
+  padding-left: 5px;
+  border-left: 1px solid black;
+  display: inline-block;
+  line-height: 1em;
+}
+
+#main-menu > li:first-child {
+  margin-left: 0;
+  padding-left: 0;
+  border-left: none;
+}
+
+/**
+ * project list popup
+ */
+#project-list {
+  position: relative;
+  padding-left: 0 !important;
+}
+
+#project-list > a {
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: -3px;
+  padding-top: 3px;
+}
+
+#project-list + li {
+  margin-left: 0;
+}
+
+#project-list ul {
+  display: none;
+  background: #A5E26A;
+  border-top: 0;
+  position: absolute;
+  margin: 0;
+  z-index: 1000;
+  top: 1.1em;
+  -moz-border-radius: 0 0 3px 3px;
+  border-radius: 0 0 3px 3px;
+  -moz-box-shadow: 0 10px 20px #333;
+  -webkit-box-shadow: 0 10px 20px #333;
+  box-shadow: 0 10px 20px #333;
+  max-height: 400px;
+  min-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#project-list ul li {
+  margin: 7px;
+  white-space: nowrap;
+  font-size: 0.95em;
+  list-style-type: square;
+  list-style-position: inside;
+}
+
+#project-list ul li:first-child {
+  margin-top: 10px;
+}
+
+#project-list ul li a {
+  text-decoration: none;
+}
+
+#project-list:hover > a {
+  background: #A5E26A;
+  text-decoration: none;
+}
+
+#project-list:hover a {
+  color: #2E3436;
+}
+
+/**
+ * List expander for tag and branch view
+ */
+.context {}
+
+.context h3 {
+  font-size: 13px;
+  font-weight: bold;
+  margin: 10px 0 5px;
+}
+
+.context > .expander {
+  position: relative;
+  overflow: hidden;
+  background: white;
+}
+
+.context > .expander > ul {
+  margin: 5px;
+}
+
+.context > .expander > ul > li {
+  white-space: nowrap;
+  list-style-type: none;
+}
+
+.context > .expander > ul > li.active {
+  font-weight: bold;
+}
+
+.context > .expander > .gradient {
+  position: absolute;
+  right: 0;
+  width: 20px;
+  height: 100%;
+  z-index: 998;
+  background: url(../img/white_gradient.png) repeat-y;
+}
+
+.context > .expander:hover,
+.context > .expander.activated {
+  position: absolute;
+  z-index: 999;
+  overflow: visible;
+  -moz-border-radius: 0 10px 10px 0;
+  -webkit-border-radius: 0 10px 10px 0;
+  border-radius: 0 10px 10px 0;
+  -moz-box-shadow: 3px 3px 5px #333;
+  -webkit-box-shadow: 3px 3px 5px #333;
+  box-shadow: 3px 3px 5px #333;
+  padding: 5px 10px;
+  margin: -5px -10px;
+  min-width: 180px;
+}
+
+.context > .expander:hover > .gradient,
+.context > .expander.activated > .gradient {
+  display: none;
+}
+
+.context > .expander span.input-with-delete {
+  padding: 1px;
+  border: 1px dotted #474747;
+  display: none;
+  float: right;
+  margin-left: 10px;
+  margin-top: -3px;
+}
+
+.context > .expander span.input-with-delete * {
+  vertical-align: middle;
+}
+
+.context > .expander span.input-with-delete span {
+  display: inline-block;
+  width: 13px;
+  height: 12px;
+  background: url(../img/clear.png) left top no-repeat;
+  cursor: pointer;
+}
+
+.context > .expander span.input-with-delete input.filter-list {
+  font-size: 11px;
+  font-weight: normal;
+  color: #333;
+  border: 0;
+  width: 100px;
+  height: 11px;
+}
+
+.context > .expander:hover span.input-with-delete.activated,
+.context > .expander.activated span.input-with-delete.activated {
+  display: block;
+}
+
+.context > .expander div.input-with-delete.default {
+  opacity: 0.5;
+}
+
+/**
+ * SCM action icons in the commit view
+ */
+span.scm-action {
+  display: inline-block;
+  line-height: 9px;
+  font-size: 9px;
+  text-align: center;
+  padding: 2px;
+  width: 9px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  color: white;
+  cursor: default;
+  margin-top: 2px;
+}
+
+span.scm-action.added {
+  background-color: darkgreen;
+}
+
+span.scm-action.deleted {
+  background-color: darkred;
+}
+
+span.scm-action.patched {
+  background-color: orange;
+}
+
+span.scm-action.renamed {
+  background-color: purple;
+}
+
+span.scm-action.property-changed {
+  background-color: blue;
+}
